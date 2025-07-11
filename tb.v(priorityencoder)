@@ -1,0 +1,23 @@
+module tb;
+  reg [3:0] I;
+  wire [1:0] Y;
+
+  // Instantiate the DUT (Design Under Test)
+  priorityencoder pri_enc(I, Y);
+
+  initial begin
+    $display("Time\tI\tY");
+    $monitor("%0t\t%b\t%b", $time, I, Y);
+
+    I = 4'b0000; #5;
+    I = 4'b0001; #5;
+    I = 4'b0010; #5;
+    I = 4'b0100; #5;
+    I = 4'b1000; #5;
+    I = 4'b1100; #5;
+    I = 4'b0110; #5;
+    I = 4'b1011; #5;
+
+    $finish;
+  end
+endmodule
