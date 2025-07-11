@@ -1,0 +1,30 @@
+
+module tb;
+reg [3:0] w;
+reg [1:0]s;
+wire [3:0]y;
+ barrel_shifter uut(.w(w),.s(s),.y(y));
+initial begin
+$display( "Time \t w \t s \t y" );
+$monitor("%0t\t%b\t%bt%b",$time,w,s,y);
+
+//first test vector input=1001
+w=4'b1001;s=2'b00;#10 //shift 0
+  s=2'b10;#10;     //shift 1
+  s=2'b01;#10;     //shift 2
+  s=2'b11;#10;     //shift 3
+
+
+w=4'b0010;s=2'b00;#10 //shift 0
+  s=2'b10;#10;     //shift 1
+  s=2'b01;#10;     //shift 2
+  s=2'b11;#10;     //shift 3
+
+w=4'b1111;s=2'b00;#10 //shift 0
+  s=2'b10;#10;     //shift 1
+  s=2'b01;#10;     //shift 2
+  s=2'b11;#10;     //shift 3
+
+$finish;
+end 
+endmodule
